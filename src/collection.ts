@@ -1,12 +1,12 @@
 import { IdObject, Operation, Filter, StateSelect, Mapper, ObjectId } from "./types";
 import { ICollection } from "./iCollection";
-import { Value } from './abstractValue'
+import { Common } from './common'
 
 /**
  * # Collection
  * TODO: Determine about distinct collections
  */
-export class Collection<E extends {} | string> extends Value<E[]> implements ICollection<E>{
+export class Collection<E extends {} | string> implements ICollection<E>{
     type: "collection";
     private _items: Record<string, E>;
     private _ids: ObjectId[];
@@ -15,12 +15,11 @@ export class Collection<E extends {} | string> extends Value<E[]> implements ICo
         return this._ids;
     }
 
-    get value() {
+    get items() {
         return this.toArray();
     }
 
     constructor(items: Record<string, E> | E[] = []) {
-        super([]);
 
         this._items = {};
         this._ids = [];
@@ -29,10 +28,10 @@ export class Collection<E extends {} | string> extends Value<E[]> implements ICo
 
             items.forEach(item => {
 
-                if (Value.ifString(item)) {
+                if (Common.ifString(item)) {
                     this._items[item] = item;
                     this._ids.push(item);
-                } else if (Value.ifId(item)) {
+                } else if (Common.ifId(item)) {
                     if (this._ids.includes(item.id)) {
                         throw Error("Cannot have duplicate item Ids in a DistinctCollection");
                     }
@@ -50,10 +49,10 @@ export class Collection<E extends {} | string> extends Value<E[]> implements ICo
     add(input: E | E[] | ICollection<E>): number {
         const items = Collection.extractArray(input);
         items.forEach((elem, index) => {
-            const isString = Value.ifString<E>(elem,
+            const isString = Common.ifString<E>(elem,
                 id => this.upsert(id)
             );
-            const hasId = Value.ifId<E>(elem,
+            const hasId = Common.ifId<E>(elem,
                 item => this.upsert(item.id, item)
             );
 
@@ -68,12 +67,12 @@ export class Collection<E extends {} | string> extends Value<E[]> implements ICo
     contains(item: E | ObjectId): boolean {
         let result = false;
 
-        Value.ifString(
+        Common.ifString(
             item,
             val => result = this._ids.includes(val)
         );
 
-        Value.ifId(
+        Common.ifId(
             item,
             val => this._ids.includes(val.id)
         );

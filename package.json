@@ -1,8 +1,12 @@
 {
-  "name": "ts-collection",
+  "name": "@rev/ts-collection",
   "version": "0.0.1",
   "description": "Generic typescript collection class",
-  "main": "index.js",
+  "files": [
+    "build"
+  ],
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

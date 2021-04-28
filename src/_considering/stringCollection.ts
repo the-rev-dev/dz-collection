@@ -1,12 +1,11 @@
-import { Value } from "./abstractValue";;
-import { IdObject, Operation, Filter,ObjectId } from "./types";
-import { ICollection } from "./iCollection";
+import { Common } from "../common";;
+import { IdObject, Operation, Filter,ObjectId } from "../types";
+import { ICollection } from "../iCollection";
 
 
 /**
- * TODO: Determine about distinct collections
+ * TODO: rEMOVE?
  */
-
 export class StringCollection implements ICollection<string>{
     type: "collection";
     private _items: Record<string, string>;
@@ -193,7 +192,7 @@ export class StringCollection implements ICollection<string>{
      * @returns number of elements in the collection
      */
     upsert(id: string, newValues?: Partial<string>) {
-        if (Value.ifString(newValues)) {
+        if (Common.ifString(newValues)) {
             this.add(id as string);
         }
     }

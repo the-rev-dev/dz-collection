@@ -10,26 +10,10 @@ export interface AbstractValueProps<T> {
 }
 
 /**
- * # Value Class
- * Acts as base value object and wraps all values with accessors.
- * Provides static helper functions.
+ * # Common Functions
+ * Generic utility functions for all to share :)
  */
-export abstract class Value<V>{
-    protected _value: V;
-    private _initialValue: V;
-
-    // eslint-disable-next-line
-    get value() { if (this._value) return this._value; };
-
-    constructor(props: V | AbstractValueProps<V>) {
-        if (Value.ifValue<V>(props)) {
-            this._value = props.value
-            this._initialValue = Object.freeze(props.value);
-        } else {
-            this._value = props as V;
-            this._initialValue = Object.freeze(props as V);
-        }
-    }
+export class Common<V>{
 
     /**
      * ## Infer Type - Generic T
@@ -69,7 +53,7 @@ export abstract class Value<V>{
 
         const isArray = Array.isArray(args);
 
-        return Value.handle(
+        return Common.handle(
             isArray,
             args,
             onSuccess,
@@ -89,7 +73,7 @@ export abstract class Value<V>{
 
         const isValid = typeof args === "string";
 
-        return Value.handle(
+        return Common.handle(
             isValid,
             args,
             onSuccess,
@@ -113,7 +97,7 @@ export abstract class Value<V>{
             && args["id"]
             && typeof args["id"] === "string";
 
-        return Value.handle(
+        return Common.handle(
             isIdObject,
             args,
             onSuccess,
@@ -135,7 +119,7 @@ export abstract class Value<V>{
             && args["type"]
             && typeof args["type"] === "string";
 
-        return Value.handle(
+        return Common.handle(
             isTypeObject,
             args,
             onSuccess,
@@ -166,7 +150,7 @@ export abstract class Value<V>{
         const isTypeObject = typeof args === "object"
             && args["value"]
 
-        return Value.handle(
+        return Common.handle(
             isTypeObject,
             args,
             onSuccess,
@@ -295,7 +279,7 @@ export abstract class Value<V>{
             const isObject = typeof (obj as any)[key] === "object"
 
             if (isObject) {
-                const readableObject = Value.toReadable((obj as any)[key], { nestedPrefix: `${nestedPrefix} `, includeNewLine });
+                const readableObject = Common.toReadable((obj as any)[key], { nestedPrefix: `${nestedPrefix} `, includeNewLine });
 
                 result = `${result}${key}:${newLineChar}${readableObject}`;
 
@@ -326,29 +310,8 @@ export abstract class Value<V>{
         });
     }
 
-    /**
-     * Sets `value` back to initial value passed in
-     */
-    protected reset(newValue?: V) {
-        this._value = newValue || this._initialValue;
-    }
 
-    /**
-     * Compares this value to another value
-     * @param other 
-     * @returns 
-     */
-    protected equals(other: Value<V>): boolean {
-        const isOtherNullOrUndefined = other === null || other === undefined;
-        const isSelfNullOrUndefined = this.value === null || this.value === undefined;
-
-        if (isOtherNullOrUndefined || isSelfNullOrUndefined) {
-            return false;
-
-        } else {
-            return shallowEqual(this.value, other.value);
-        }
-    }
+    
     /**
        * Use dot notation to access a nested property in `value`
        * @param path 
@@ -363,13 +326,9 @@ export abstract class Value<V>{
             else return obj;
         }, object) as R;
     }
-    /**
-    * Use dot notation to access a nested property in `value`
-    * @param path 
-    */
-    public nestedValue<R>(path: string) {
-        return Value.nestedValue<R>(this._value, path);
-    }
+
+    
+    
     /**
        * # Shallow Equal
        *
