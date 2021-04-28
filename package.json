@@ -1,5 +1,5 @@
 {
-  "name": "@rev/ts-collection",
+  "name": "dz-collection",
   "version": "0.0.1",
   "description": "Generic typescript collection class",
   "files": [
