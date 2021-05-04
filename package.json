@@ -1,5 +1,5 @@
 {
-  "name": "dz-collection",
+  "name": "rev-collection",
   "version": "0.0.1",
   "description": "Generic typescript collection class",
   "files": [
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/the-rev-dev/ts-collection.git"
+    "url": "git+https://github.com/the-rev-dev/rev-collection.git"
   },
   "author": "Timothy Ernst",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/the-rev-dev/ts-collection/issues"
+    "url": "https://github.com/the-rev-dev/rev-collection/issues"
   },
-  "homepage": "https://github.com/the-rev-dev/ts-collection#readme",
+  "homepage": "https://github.com/the-rev-dev/rev-collection#readme",
   "dependencies": {
     "shallow-equal-object": "^1.1.1"
   }
