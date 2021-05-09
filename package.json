@@ -1,7 +1,7 @@
 {
   "name": "rev-collection",
   "version": "0.0.2",
-  "description": "TypeScript library that facilitates interactions with lists, records, and arrays through a Collection class",
+  "description": "TypeScript library to facilitate record/array interactions through a Collection class",
   "files": [
     "lib"
   ],
