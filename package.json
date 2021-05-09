@@ -1,6 +1,6 @@
 {
   "name": "rev-collection",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generic typescript collection class",
   "files": [
     "build"
