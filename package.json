@@ -1,22 +1,22 @@
 {
   "name": "rev-collection",
   "version": "0.0.2",
-  "description": "Generic typescript collection class",
+  "description": "TypeScript library that facilitates interactions with lists, records, and arrays through a Collection class",
   "files": [
-    "build"
+    "lib"
   ],
-  "main": "./build/index.js",
-  "types": "./build/index.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "clean:npm": "shx rm -rf node_modules",
-    "clean:build": "shx rm -rf build",
+    "clean:lib": "shx rm -rf lib",
     "push:add": "git add .",
     "push:commit": "git commit -m \"Pre-publish commit\" || node -e \"console.log('---SKIPPED COMMIT---')\"",
     "push": "npm run push:add && npm run push:commit",
-    "prepublishOnly": "npm run clean:build && npm run build && npm run push && npm version patch",
-    "clean": "npm run clean:build && npm run clean:npm"
+    "prepublishOnly": "npm run clean:lib && npm run build && npm run push && npm version patch",
+    "clean": "npm run clean:lib && npm run clean:npm"
   },
   "repository": {
     "type": "git",

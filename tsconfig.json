@@ -21,7 +21,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "declaration": true,
-    "outDir": "build",
+    "outDir": "lib",
     "sourceMap": true,
     "jsx": "react",
     "suppressImplicitAnyIndexErrors": true,
@@ -29,7 +29,7 @@
     "paths": {
       "*": [
         "*",
-        "build/*",
+        "lib/*",
       ]
     }
   },
