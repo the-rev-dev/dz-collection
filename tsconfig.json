@@ -1,43 +1,14 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "ES2018",
-      "es7",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "downlevelIteration": true,
-    "moduleResolution": "node",
-    "declarationMap": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "module": "commonjs",
+    "lib": ["es6", "es2015", "dom"],
     "declaration": true,
-    "outDir": "build",
-    "sourceMap": true,
-    "jsx": "react",
-    "suppressImplicitAnyIndexErrors": true,
-    "baseUrl": ".",
-    "paths": {
-      "*": [
-        "*",
-        "build/*",
-      ]
-    }
-  },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/__tests__/*"
-  ]
+    "outDir": "lib",
+    "rootDir": "src",
+    "strict": true,
+    "types": ["node"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  }
 }
